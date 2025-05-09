@@ -19,6 +19,11 @@ export default {
             DEFAULT: '#363432',
             dark: '#262422',
           },
+          tertiary: {
+            light: '#a3a3a3',
+            DEFAULT: '#464442',
+            dark: '#363432',
+          },
         },
         foreground: {
           primary: {
@@ -30,6 +35,11 @@ export default {
             light: '#363432',
             DEFAULT: '#b3b3b3',
             dark: '#c3c3c3',
+          },
+          tertiary: {
+            light: '#464442',
+            DEFAULT: '#939393',
+            dark: '#a3a3a3',
           },
         },
       },

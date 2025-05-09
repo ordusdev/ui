@@ -7,12 +7,12 @@ type Option = {
   icon: Icons;
 };
 
-type PickerAtomProps = {
+type PickerAtom = {
   variant: "primary" | "secondary";
   options: Option[];
 } & Omit<ComponentProps<"input">, "onChange">;
 
-export const PickerAtom: React.FC<PickerAtomProps> = ({
+export const PickerAtom: React.FC<PickerAtom> = ({
   variant,
   options,
   className,
@@ -73,7 +73,7 @@ export const PickerAtom: React.FC<PickerAtomProps> = ({
             return (
               <li
                 key={option.value}
-                className="px-4 py-2 hover:bg-brand-dark/50 cursor-pointer flex gap-2 items-center"
+                className="px-4 py-2 hover:bg-background-tertiary/60 cursor-pointer flex gap-2 items-center"
                 onMouseDown={() => {
                   setSearch(option.label);
                   setShowOptions(false);

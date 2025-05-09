@@ -7,7 +7,8 @@ type ButtonAtom = {
 export const ButtonAtom: React.FC<ButtonAtom> = ({ variant, className, ...props}) => {
   const styles = {
     primary: 'bg-brand text-white',
-    secondary: 'bg-brand-light text-black'
+    secondary: 'bg-brand-light text-black',
+    tertiary: 'bg-background-tertiary text-black'
   }
 
   return (
