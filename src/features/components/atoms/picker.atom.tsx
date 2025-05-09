@@ -73,7 +73,7 @@ export const PickerAtom: React.FC<PickerAtomProps> = ({
             return (
               <li
                 key={option.value}
-                className="px-4 py-2 hover:bg-brand cursor-pointer flex gap-2 items-center"
+                className="px-4 py-2 hover:bg-brand-dark/50 cursor-pointer flex gap-2 items-center"
                 onMouseDown={() => {
                   setSearch(option.label);
                   setShowOptions(false);
