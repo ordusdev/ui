@@ -4,9 +4,9 @@ export default {
     extend: {
       colors: {
         brand: {
-          light: '#55ecb0',
-          DEFAULT: '#25cc90',
-          dark: '#05ab70',
+          dark: '#0188aa',
+          light: '#47b9d5',
+          DEFAULT: '#24a1bf',
         },
         background: {
           primary: {
@@ -50,5 +50,5 @@ export default {
     },
   },
   plugins: [],
-  darkMode: 'media',
+  // darkMode: 'media',
 }

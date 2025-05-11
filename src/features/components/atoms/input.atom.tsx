@@ -1,4 +1,5 @@
 import type { ComponentProps } from "react";
+import React from "react";
 
 type InputAtom = {
   variant: 'primary' | 'secondary'

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentProps } from "react";
+import React, { useEffect, useState, type ComponentProps } from "react";
 import IconConfig, { Icons } from "../../../config/icons.config";
 
 type Option = {
