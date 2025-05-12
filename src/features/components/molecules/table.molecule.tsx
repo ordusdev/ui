@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { TablePaginationAtom } from "../atoms/tablePagination.atom";
+import IconConfig from '../../../config/icons.config';
+
+const OrderAscIcon = IconConfig.getIconByName('order-by-asc')
+const OrderDescIcon = IconConfig.getIconByName('order-by-desc')
 
 type Column<T> = {
   key: keyof T;
@@ -12,6 +16,8 @@ type TableMoleculeProps<T> = {
   renderCell?: (key: keyof T, item: T) => React.ReactNode;
   itemsPerPage?: number;
   onItemClick?: (item: T) => void;
+  onOrderBy?: (key: keyof T, order: "asc" | "desc") => void;
+  orderBy?: { key: keyof T; order: "asc" | "desc" };
 };
 
 export function TableMolecule<T extends Record<string, any>>({
@@ -20,6 +26,8 @@ export function TableMolecule<T extends Record<string, any>>({
   renderCell,
   itemsPerPage = 10,
   onItemClick,
+  onOrderBy,
+  orderBy = { key: "", order: "asc" },
 }: TableMoleculeProps<T>) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(data.length / itemsPerPage);
@@ -46,15 +54,32 @@ export function TableMolecule<T extends Record<string, any>>({
 
   return (
     <div className="w-full">
-      <div className="overflow-auto border-2 border-background-tertiary rounded-2xl w-full">
+      <div className="overflow-auto border-2 border-background-tertiary rounded-2xl w-full select-none">
         <table className="min-w-full text-sm text-left rounded">
           <thead className={`${styles.primary.head} rounded`}>
             <tr>
-              {columns.map((col) => (
-                <th key={String(col.key)} className="px-4 py-3 font-medium">
-                  {col.label}
-                </th>
-              ))}
+              {columns.map((col) => {
+                const isOrdered = col.key === orderBy.key;
+                const nextOrder = isOrdered && orderBy.order === "asc" ? "desc" : "asc";
+                const Icon = isOrdered
+                  ? orderBy.order === "asc"
+                    ? OrderAscIcon
+                    : OrderDescIcon
+                  : null;
+
+                return (
+                  <th
+                    key={String(col.key)}
+                    className="px-4 py-3 font-medium cursor-pointer select-none"
+                    onClick={() => onOrderBy?.(col.key, nextOrder)}
+                  >
+                    <div className="flex items-center gap-1">
+                      <span>{col.label}</span>
+                      {Icon && <Icon size={16} />}
+                    </div>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody className={`${styles.primary.body} divide-y rounded`}>
@@ -68,7 +93,7 @@ export function TableMolecule<T extends Record<string, any>>({
               paginatedData.map((item, rowIndex) => (
                 <tr key={rowIndex} className={`hover:bg-background-tertiary/60 ${onItemClick ? 'cursor-pointer' : ''}`} title={item.name} onClick={() => onItemClick?.(item)}>
                   {columns.map((col) => (
-                    <td key={String(col.key)} className="px-4 py-1">
+                    <td key={String(col.key)} className="px-4 py-3">
                       {renderCell ? renderCell(col.key, item) : item[col.key]}
                     </td>
                   ))}

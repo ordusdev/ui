@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react'
+import React, { StrictMode, useMemo } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ButtonAtom } from './features/components/atoms/button.atom'
@@ -19,13 +19,167 @@ const App = () => {
   const MailIcon = IconConfig.getIconByName('mail')
   const PhoneIcon = IconConfig.getIconByName('phone')
 
+  const data = [
+    {
+      name: 'John Doe',
+      email: 'TjK5t@example.com',
+      phone: '123-456-7890',
+      city: 'New York',
+      cpf: '123.456.789-00',
+    },
+    {
+      name: 'João Doe',
+      email: 'T982738@example.com',
+      phone: '345-678-9012',
+      city: 'Los Angeles',
+      cpf: '987.654.321-00',
+    },
+    {
+      name: 'Maria Silva',
+      email: 'maria.silva@example.com',
+      phone: '998-123-4567',
+      city: 'São Paulo',
+      cpf: '321.654.987-01',
+    },
+    {
+      name: 'Carlos Pereira',
+      email: 'carlos.p@example.com',
+      phone: '987-654-3210',
+      city: 'Rio de Janeiro',
+      cpf: '456.789.123-02',
+    },
+    {
+      name: 'Emily Johnson',
+      email: 'emily.j@example.com',
+      phone: '555-123-4567',
+      city: 'Chicago',
+      cpf: '789.123.456-03',
+    },
+    {
+      name: 'Pedro Oliveira',
+      email: 'pedro.o@example.com',
+      phone: '321-987-6543',
+      city: 'Belo Horizonte',
+      cpf: '147.258.369-04',
+    },
+    {
+      name: 'Lucas Lima',
+      email: 'lucas.l@example.com',
+      phone: '888-777-6666',
+      city: 'Fortaleza',
+      cpf: '258.369.147-05',
+    },
+    {
+      name: 'Sophia Costa',
+      email: 'sophia.c@example.com',
+      phone: '999-555-3333',
+      city: 'Curitiba',
+      cpf: '369.147.258-06',
+    },
+    {
+      name: 'Daniel Souza',
+      email: 'daniel.s@example.com',
+      phone: '123-321-1234',
+      city: 'Porto Alegre',
+      cpf: '741.852.963-07',
+    },
+    {
+      name: 'Olivia Brown',
+      email: 'olivia.b@example.com',
+      phone: '444-333-2222',
+      city: 'San Francisco',
+      cpf: '852.963.741-08',
+    },
+    {
+      name: 'Fernando Rocha',
+      email: 'fernando.r@example.com',
+      phone: '555-000-1111',
+      city: 'Recife',
+      cpf: '963.741.852-09',
+    },
+    {
+      name: 'Julia Fernandes',
+      email: 'julia.f@example.com',
+      phone: '666-111-2222',
+      city: 'Manaus',
+      cpf: '159.357.486-10',
+    },
+    {
+      name: 'André Martins',
+      email: 'andre.m@example.com',
+      phone: '777-888-9999',
+      city: 'Salvador',
+      cpf: '753.951.258-11',
+    },
+    {
+      name: 'Laura Almeida',
+      email: 'laura.a@example.com',
+      phone: '888-999-0000',
+      city: 'Brasília',
+      cpf: '456.321.789-12',
+    },
+    {
+      name: 'Bruno Teixeira',
+      email: 'bruno.t@example.com',
+      phone: '222-333-4444',
+      city: 'Florianópolis',
+      cpf: '789.654.123-13',
+    },
+    {
+      name: 'Amanda Ribeiro',
+      email: 'amanda.r@example.com',
+      phone: '111-222-3333',
+      city: 'Natal',
+      cpf: '321.987.654-14',
+    },
+    {
+      name: 'Gabriel Nunes',
+      email: 'gabriel.n@example.com',
+      phone: '999-111-7777',
+      city: 'Belém',
+      cpf: '987.123.654-15',
+    },
+  ];
+  
+  const [orderBy, setOrderBy] = React.useState<{ key: string; order: 'asc' | 'desc' }>({
+    key: 'name',
+    order: 'asc',
+  })
+
+  const orderedData = useMemo(() => {
+    return [...data].sort((a, b) => {
+      if (a[orderBy.key] < b[orderBy.key]) {
+        return orderBy.order === 'asc' ? -1 : 1
+      }
+      if (a[orderBy.key] > b[orderBy.key]) {
+        return orderBy.order === 'asc' ? 1 : -1
+      }
+      return 0
+    })
+  }, [data, orderBy])
+
+  const handleOrderBy = (key: string) => {
+    setOrderBy((prevOrderBy) => {
+      if (prevOrderBy.key === key) {
+        return {
+          key,
+          order: prevOrderBy.order === 'asc' ? 'desc' : 'asc',
+        }
+      }
+      return {
+        key,
+        order: 'asc',
+      }
+    })
+  }
+
   return (
     <>
       <SidebarAtom />
       <div className="pl-20 group-hover:pl-48  transition-all duration-300 min-h-screen flex pt-20 px-8 items-center justify-start bg-background-primary flex-col">
         
         
-        <div className="w-full max-w-[85%] flex flex-col gap-2">
+        <div className="w-full max-w-[85%] flex flex-col gap-2 justify-center">
           <div className="flex gap-2">
             <div className="flex w-80">
               <SearchInputAtom variant='secondary'/>
@@ -58,7 +212,10 @@ const App = () => {
               
           </div>
           <TableMolecule
-            itemsPerPage={5}
+            itemsPerPage={10}
+            onItemClick={(item) => console.log(item)}
+            onOrderBy={handleOrderBy}
+            orderBy={orderBy}
             columns={[{
               key: 'name',
               label: 'Nome',
@@ -75,44 +232,8 @@ const App = () => {
               key: 'city',
               label: 'Cidade',
             },
-            {
-              key: 'actions',
-              label: 'Ações',
-            }
             ]}
-            data={[{
-              name: 'Fulano de Tal',
-              email: 'WZqZ6@example.com',
-              cpf: '123.456.789-00',
-              phone: '(11) 99999-9999',
-              city: 'São Paulo',
-              actions: 'Editar | Excluir'
-            },
-            {
-              name: 'Ciclano da Silva',
-              email: 'WZqZ6@example.com',
-              cpf: '123.456.789-00',
-              phone: '(11) 99999-9999',
-              city: 'São Paulo',
-              actions: 'Editar | Excluir'
-            },
-            {
-              name: 'Ciclano da Silva',
-              email: 'WZqZ6@example.com',
-              cpf: '123.456.789-00',
-              phone: '(11) 99999-9999',
-              city: 'São Paulo',
-              actions: 'Editar | Excluir'
-            },
-            {
-              name: 'Ciclano da Silva',
-              email: 'WZqZ6@example.com',
-              cpf: '123.456.789-00',
-              phone: '(11) 99999-9999',
-              city: 'São Paulo',
-              actions: 'Editar | Excluir'
-            },
-          ]}
+            data={orderedData}
             renderCell={(key, item) => {
               if(key === 'email') {
                 return (
@@ -134,42 +255,8 @@ const App = () => {
                   </div>
                 )
               }
-              if (key === 'actions') {
-                return (
-                  <div className="flex gap-2 my-1">
-                    <ButtonAtom variant='tertiary' title='Remover'>
-                      <TrashIcon className="w-4 h-4 text-gray-200"/>
-                    </ButtonAtom>
-                  </div>
-                )
-              }
               return item[key]
             }}
-          />
-
-          <ChartAtom
-            type="line"
-            data={[
-              { name: "Vendas", value: 300 },
-              { name: "Marketing", value: 500 },
-              { name: "Suporte", value: 200 },
-            ]}
-            series={[{ key: "value", name: "Setores" }]}
-          />
-          <ChartAtom
-            type="line"
-            nameKey="mes" // eixo X
-            data={[
-              { mes: "Jan", matriculas: 20 },
-              { mes: "Fev", matriculas: 35 },
-              { mes: "Mar", matriculas: 28 },
-              { mes: "Abr", matriculas: 40 },
-              { mes: "Mai", matriculas: 33 },
-              { mes: "Jun", matriculas: 35 },
-              { mes: "Jul", matriculas: 37 },
-              { mes: "Ago", matriculas: 45 },
-            ]}
-            series={[{ key: "matriculas", name: "Matrículas" }]}
           />
 
 

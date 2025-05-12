@@ -23,7 +23,7 @@ export const TablePaginationAtom: React.FC<TablePaginationAtom> = ({
   goToPage,
 }) => {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-center items-center flex-wrap md:justify-between">
       <span className="ml-4 text-gray-500 text-xs">
         Página {currentPage} de {totalPages} | Exibindo de {(currentPage * itemsPerPage) - (itemsPerPage - 1)} à {Math.min(currentPage * itemsPerPage, totalItems)} de um total de {totalItems} itens
       </span>

@@ -1,5 +1,7 @@
 import {
   Anchor,
+  ArrowDownNarrowWide,
+  ArrowUpNarrowWide,
   BadgeDollarSign,
   BowArrow,
   ChevronFirst,
@@ -23,6 +25,7 @@ import {
 const icons = {
   anchor: Anchor,
   approved: CircleCheckBig,
+  'bank-slit': BadgeDollarSign,
   'bow-arrow': BowArrow,
   close: X,
   crown: Crown,
@@ -32,10 +35,11 @@ const icons = {
   'last-page': ChevronLast,
   mail: Mail,
   'next-page': ChevronRight,
+  'order-by-asc': ArrowUpNarrowWide,
+  'order-by-desc': ArrowDownNarrowWide,
   phone: Phone,
   pix: Receipt,
   'prev-page': ChevronLeft,
-  'bank-slit': BadgeDollarSign,
   pending: ClockFading,
   recused: CircleOff,
   search: Search,

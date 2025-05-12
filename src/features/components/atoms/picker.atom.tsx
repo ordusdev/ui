@@ -67,7 +67,7 @@ export const PickerAtom: React.FC<PickerAtom> = ({
         </button>
       )}
       {showOptions && filteredOptions.length > 0 && (
-        <ul className={`absolute mt-1 w-full border-none rounded shadow z-10 ${styles[variant]}`}>
+        <ul className={`absolute mt-1 w-full border-none rounded shadow z-10 max-h-40 overflow-y-auto ${styles[variant]}`}>
           {filteredOptions.map((option) => {
             const Icon = IconConfig.getIconByName(option.icon)
             return (
