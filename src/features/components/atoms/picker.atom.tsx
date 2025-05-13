@@ -43,6 +43,7 @@ export const PickerAtom: React.FC<PickerAtom> = ({
   };
 
   const CloseIcon = IconConfig.getIconByName("close")
+  const FilterIcon = IconConfig.getIconByName("filter")
 
   return (
     <div className="relative w-full">
@@ -58,14 +59,21 @@ export const PickerAtom: React.FC<PickerAtom> = ({
         onFocus={() => setShowOptions(true)}
         onBlur={() => setTimeout(() => setShowOptions(false), 200)} // pequena espera para permitir clique
       />
-      {search && (
+      {search ? (
         <button
           className={`absolute right-2 top-1/2 transform -translate-y-1/2 ${styles[variant]}`}
           onClick={() => setSearch("")}
         >
           <CloseIcon className="w-4 h-4" />
         </button>
-      )}
+        )
+        :
+        (
+          <div className={`absolute right-2 top-1/2 transform -translate-y-1/2 ${styles[variant]}`}>
+            <FilterIcon className="w-4 h-4" />
+          </div>
+        )
+      }
       {showOptions && filteredOptions.length > 0 && (
         <ul className={`absolute mt-1 w-full border-none rounded shadow z-10 max-h-40 overflow-y-auto ${styles[variant]}`}>
           {filteredOptions.map((option) => {

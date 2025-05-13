@@ -1,4 +1,4 @@
-import React, { StrictMode, useMemo } from 'react'
+import React, { StrictMode, useMemo, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { ButtonAtom } from './features/components/atoms/button.atom'
@@ -10,6 +10,9 @@ import IconConfig from './config/icons.config'
 import { SidebarAtom } from './features/components/atoms/sidebar.atom'
 import { ChartAtom } from './features/components/atoms/chart.atom'
 import { TableMolecule } from './features/components/molecules/table.molecule'
+import { TabNavigationMolecule } from './features/components/molecules/tabNavigation.molecule'
+import { FilterOrganism } from './features/components/organisms/filter.organism'
+import { PaymentsPage } from './features/components/pages/payments.page'
 
 
 const App = () => {
@@ -142,7 +145,7 @@ const App = () => {
   ];
   
   const [orderBy, setOrderBy] = React.useState<{ key: string; order: 'asc' | 'desc' }>({
-    key: 'name',
+    key: Object.keys(data[0])[0] as keyof typeof data[0],
     order: 'asc',
   })
 
@@ -173,6 +176,8 @@ const App = () => {
     })
   }
 
+  const [currentTab, setCurrentTab] = useState('pedidos');
+
   return (
     <>
       <SidebarAtom />
@@ -180,85 +185,79 @@ const App = () => {
         
         
         <div className="w-full max-w-[85%] flex flex-col gap-2 justify-center">
-          <div className="flex gap-2">
-            <div className="flex w-80">
-              <SearchInputAtom variant='secondary'/>
-            </div>
-            
-            <h2 className='text-md text-foreground-primary'>Filtros:</h2>
-            <div className="flex w-64 gap-2">
-              <PickerAtom 
-                variant='secondary' 
-                placeholder='Meio de pagamento'
-                options={[
-                  {label: 'PIX', value: 'pix', icon: 'pix'},
-                  {label: 'Boleto', value: 'bankslit', icon: 'bank-slit'},
-                  {label: 'Cartão de crédito', value: 'credit-card', icon: 'credit-card'},
-                ]}
-              />
-            </div>
-            <div className="flex w-64 gap-2">
-              <PickerAtom 
-                variant='secondary'
-                placeholder='Status'
-                options={[
-                  {label: 'Aprovado', value: 'approved', icon: 'approved'},
-                  {label: 'Recusado', value: 'recused', icon: 'recused'},
-                  {label: 'Pendente', value: 'pending', icon: 'pending'},
-                ]}
-              />
-            </div>
-
-              
-          </div>
-          <TableMolecule
-            itemsPerPage={10}
-            onItemClick={(item) => console.log(item)}
-            onOrderBy={handleOrderBy}
-            orderBy={orderBy}
-            columns={[{
-              key: 'name',
-              label: 'Nome',
-            }, {
-              key: 'email',
-              label: 'Email',
-            }, {
-              key: 'cpf',
-              label: 'CPF',
-            }, {
-              key: 'phone',
-              label: 'Telefone',
-            }, {
-              key: 'city',
-              label: 'Cidade',
-            },
+          <div className="flex gap-2 flex-col">
+           <FilterOrganism
+            filters={[
+              {
+                id: 'name',
+                name: 'Nome',
+                options: [
+                  {
+                    label: 'A',
+                    value: 'A',
+                    icon: 'anchor',
+                  },
+                ],
+              }
             ]}
-            data={orderedData}
-            renderCell={(key, item) => {
-              if(key === 'email') {
-                return (
-                  <div className='flex gap-2'>
-                    <a className='flex gap-2 text-brand-dark' href={`mailto:${item[key]}`}>
-                      <MailIcon className="w-5 h-5 text-brand-gray"/>
-                    </a>
-                    {item[key]}
-                  </div>
-                )
-              }
-              if(key === 'phone') {
-                return (
-                  <div className="flex gap-2">
-                    <a className='flex gap-2 text-brand-dark' href={`tel:${item[key]}`}>
-                      <PhoneIcon className="w-5 h-5 text-brand-gray"/>
-                    </a>
-                    {item[key]}
-                  </div>
-                )
-              }
-              return item[key]
-            }}
-          />
+           />
+          
 
+          <TabNavigationMolecule
+            activeTab={currentTab}
+            tabs={[
+              { label: 'Pedidos', value: 'pedidos', key: 'pedidos' },
+              { label: 'Clientes', value: <TableMolecule
+                itemsPerPage={10}
+                onItemClick={(item) => console.log(item)}
+                onOrderBy={handleOrderBy}
+                orderBy={orderBy}
+                columns={[{
+                  key: 'name',
+                  label: 'Nome',
+                }, {
+                  key: 'email',
+                  label: 'Email',
+                }, {
+                  key: 'cpf',
+                  label: 'CPF',
+                }, {
+                  key: 'phone',
+                  label: 'Telefone',
+                }, {
+                  key: 'city',
+                  label: 'Cidade',
+                },
+                ]}
+                data={orderedData}
+                renderCell={(key, item) => {
+                  if(key === 'email') {
+                    return (
+                      <div className='flex gap-2'>
+                        <a className='flex gap-2 text-brand-dark' href={`mailto:${item[key]}`}>
+                          <MailIcon className="w-5 h-5 text-brand-gray"/>
+                        </a>
+                        {item[key]}
+                      </div>
+                    )
+                  }
+                  if(key === 'phone') {
+                    return (
+                      <div className="flex gap-2">
+                        <a className='flex gap-2 text-brand-dark' href={`tel:${item[key]}`}>
+                          <PhoneIcon className="w-5 h-5 text-brand-gray"/>
+                        </a>
+                        {item[key]}
+                      </div>
+                    )
+                  }
+                  return item[key]
+                }}
+              />, key: 'clientes' },
+            ]}
+            onTabChange={setCurrentTab}
+          />
+        </div>
 
         </div>
       </div> 
@@ -268,6 +267,7 @@ const App = () => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App/>
+    {/* <App/> */}
+    <PaymentsPage/>
   </StrictMode>,
 )
