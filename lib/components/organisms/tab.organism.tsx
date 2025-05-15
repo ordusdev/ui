@@ -1,6 +1,6 @@
 import React from "react"
 import { TabNavigationMolecule } from "../molecules/tabNavigation.molecule"
-import IconConfig, { Icons } from "../../../config/icons.config"
+import IconConfig, { Icons } from "../../config/icons.config"
 
 type TabOrganism = {
   title: {
@@ -11,6 +11,7 @@ type TabOrganism = {
     label: string,
     key: string,
     value: React.ReactNode
+    icon: Icons
   }[],
   activeTab: string,
   onTabChange: (tab: string) => void

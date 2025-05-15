@@ -99,3 +99,4 @@ const Config = {
 
 export type { Icons }
 export default Config
+export const IconConfig = Config

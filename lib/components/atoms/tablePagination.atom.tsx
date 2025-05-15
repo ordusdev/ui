@@ -1,5 +1,5 @@
 import React from "react";
-import IconConfig  from "../../../config/icons.config";
+import IconConfig  from "../../config/icons.config";
 import { ButtonAtom } from "./button.atom";
 
 const NextPageIcon = IconConfig.getIconByName('next-page')

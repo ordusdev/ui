@@ -1,9 +1,11 @@
 import React from "react";
+import { Icons, IconConfig } from '../../config/icons.config';
 
 type Tab = {
   label: string;
   key: string;
   value: React.ReactNode;
+  icon: Icons
 };
 
 type TabNavigationMolecule = {
@@ -24,17 +26,18 @@ export const TabNavigationMolecule: React.FC<TabNavigationMolecule> = ({
       <div className={`flex border-b border-border border-foreground-tertiary  ${className}`}>
         {tabs.map((tab) => {
           const isActive = tab.key === activeTab;
+          const Icon = IconConfig.getIconByName(tab.icon)
           return (
             <button
               key={tab.key}
               onClick={() => onTabChange(tab.key)}
-              className={`px-4 py-2 transition-colors border-b-2 ${
+              className={`px-4 py-2 transition-colors border-b-2 flex items-center gap-1 ${
                 isActive
                   ? "border-brand text-brand font-medium"
                   : "border-transparent text-foreground-secondary hover:text-foreground"
               }`}
             >
-              {tab.label}
+             {Icon && <Icon className="w-4 h-4"/>} {tab.label}
             </button>
           );
         })}

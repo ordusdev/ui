@@ -1,45 +1,49 @@
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@ordus/ui/**/*.{js,ts,jsx,tsx}', // se for publicada depois
+  ],
   theme: {
     extend: {
       colors: {
         brand: {
-          dark: '#0188aa',
-          light: '#47b9d5',
-          DEFAULT: '#24a1bf',
+          dark: '#00faaf',
+          light: '#00faaf',
+          DEFAULT: '#00faaf',
         },
         background: {
           primary: {
             light: '#f3f3f3',
-            DEFAULT: '#262422',
-            dark: '#161412',
+            DEFAULT: '#141618',
+            dark: '#442c1c',
           },
           secondary: {
             light: '#c3c3c3',
-            DEFAULT: '#363432',
-            dark: '#262422',
+            DEFAULT: '#242628',
+            dark: '#734830',
           },
           tertiary: {
             light: '#a3a3a3',
-            DEFAULT: '#464442',
+            DEFAULT: '#343638',
             dark: '#363432',
           },
         },
         foreground: {
           primary: {
             light: '#161412',
-            DEFAULT: '#e3e3e3',
+            DEFAULT: '#e4e3e2',
             dark: '#f3f3f3',
           },
           secondary: {
             light: '#363432',
-            DEFAULT: '#b3b3b3',
-            dark: '#c3c3c3',
+            DEFAULT: '#d4d3d2',
+            dark: '#734830',
           },
           tertiary: {
             light: '#464442',
-            DEFAULT: '#939393',
-            dark: '#a3a3a3',
+            DEFAULT: '#c4c3c2',
+            dark: '#935840',
           },
         },
       },

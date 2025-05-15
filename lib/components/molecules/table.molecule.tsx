@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TablePaginationAtom } from "../atoms/tablePagination.atom";
-import IconConfig from '../../../config/icons.config';
+import IconConfig from '../../config/icons.config';
 
 const OrderAscIcon = IconConfig.getIconByName('order-by-asc')
 const OrderDescIcon = IconConfig.getIconByName('order-by-desc')

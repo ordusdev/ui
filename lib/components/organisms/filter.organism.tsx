@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchInputAtom } from "../atoms/searchInput.atom";
 import { PickerAtom } from "../atoms/picker.atom";
-import { Icons } from "../../../config/icons.config";
+import { Icons } from "../../config/icons.config";
 
 type FilterOrganism = {
   filters: {

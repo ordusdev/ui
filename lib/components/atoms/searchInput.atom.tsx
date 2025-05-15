@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 import React from "react";
 import { InputAtom } from "./input.atom";
 import { ButtonAtom } from "./button.atom";
-import IconConfig from '../../../config/icons.config';
+import IconConfig from '../../config/icons.config';
 
 type SearchInputAtom = {
   variant: 'primary' | 'secondary'
