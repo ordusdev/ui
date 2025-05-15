@@ -1,6 +1,5 @@
 import React from "react";
-import { LoginTemplate } from "../templates/login.template";
-import { ButtonAtom, CardMolecule, InputAtom } from "@ordus/ui";
+import { ButtonAtom, CardMolecule, InputAtom, LoginTemplate } from "@ordus/ui";
 
 type LoginPage = {}
 

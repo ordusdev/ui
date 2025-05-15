@@ -200,4 +200,10 @@ type DashTemplate = {
 };
 declare const DashTemplate: react__default.FC<DashTemplate>;
 
-export { ButtonAtom, CardMolecule, ChartAtom, DashTemplate, DatePickerMolecule, FilterOrganism, InputAtom, MonthPickerAtom, PickerAtom, SearchInputAtom, SidebarAtom, TabNavigationMolecule, TabOrganism, TableMolecule, TablePaginationAtom };
+type LoginTemplate = {
+    children: react__default.ReactNode;
+    bgImage?: string;
+};
+declare const LoginTemplate: react__default.FC<LoginTemplate>;
+
+export { ButtonAtom, CardMolecule, ChartAtom, DashTemplate, DatePickerMolecule, FilterOrganism, InputAtom, LoginTemplate, MonthPickerAtom, PickerAtom, SearchInputAtom, SidebarAtom, TabNavigationMolecule, TabOrganism, TableMolecule, TablePaginationAtom };

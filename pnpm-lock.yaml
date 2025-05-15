@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@ordus/ui':
-        specifier: 0.0.1-alpha.3
-        version: 0.0.1-alpha.3(jiti@1.21.7)(postcss@8.5.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)(yaml@2.7.1)
+        specifier: 0.0.1-alpha.4
+        version: 0.0.1-alpha.4(jiti@1.21.7)(postcss@8.5.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)(yaml@2.7.1)
       lucide-react:
         specifier: ^0.508.0
         version: 0.508.0(react@18.3.1)
@@ -478,8 +478,8 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@ordus/ui@0.0.1-alpha.3':
-    resolution: {integrity: sha512-0kCZY5Hh9FNd2o6awsqXHchM1JPpQmNiWLd4RH8eksUlFqvg1KnM9MFEwFT4qn7SKCjkxEQWVsVhExKVT4XaSw==}
+  '@ordus/ui@0.0.1-alpha.4':
+    resolution: {integrity: sha512-eMK55BX9BhilrvsMp0Y/aofYw2ZGujHGOfi1GUF/Pp1F2p5lUEyNOvQtrcSPNrGilZJsyYKvsDs1Q9FpWKALJA==}
     peerDependencies:
       react: ^18.3.1
       react-dom: ^18.3.1
@@ -1763,7 +1763,7 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
-  '@ordus/ui@0.0.1-alpha.3(jiti@1.21.7)(postcss@8.5.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)(yaml@2.7.1)':
+  '@ordus/ui@0.0.1-alpha.4(jiti@1.21.7)(postcss@8.5.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.8.3)(yaml@2.7.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)

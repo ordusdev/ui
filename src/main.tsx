@@ -4,13 +4,17 @@ import './index.css'
 import { PaymentsPage } from './features/components/pages/payments.page'
 import { ProfilePage } from './features/components/pages/profile.page'
 import { LoginPage } from './features/components/pages/login.page'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <App/> */}
-    {/* <PaymentsPage/> */}
-    <LoginPage/>
-    {/* <ProfilePage/> */}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PaymentsPage/>}/>
+        <Route path="/profile" element={<ProfilePage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
 )

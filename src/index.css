@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 html {
-  background-color: theme('colors.background.primary.light');
+  background-color: theme('colors.background.primary.DEFAULT');
+  color: theme('colors.foreground.primary.DEFAULT');
 }

@@ -76,6 +76,9 @@ export const ProfilePage: React.FC<ProfilePage> = () => {
           </div>
           <ButtonAtom variant="primary" className="w-full">Autenticar</ButtonAtom>
         </CardMolecule>
+
+        <InputAtom label="Data" variant="tertiary" placeholder="Data" type="date" min={new Date().toISOString().split('T')[0]}/>
+        <InputAtom label="Data" variant="tertiary" placeholder="Data" type="time"/>
       </div>
     </DashTemplate>
   )
