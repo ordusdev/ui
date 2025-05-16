@@ -1,5 +1,6 @@
 import React from "react"
 import { DashTemplate , InputAtom , CardMolecule, PickerAtom , ButtonAtom } from "@ordus/ui"
+import { Popover } from "../popover.atom"
 
 type ProfilePage = {}
 
@@ -68,7 +69,7 @@ export const ProfilePage: React.FC<ProfilePage> = () => {
           </div>
         </CardMolecule>
 
-        <CardMolecule title="Autenticar" icon="user" className="max-w-96">
+        <CardMolecule title="Autenticar" icon="info" className="max-w-96">
           <></>
             <InputAtom label="Usuário" variant="tertiary" placeholder="Digite seu usuário" />
             <InputAtom label="Senha" variant="tertiary" placeholder="Digite sua senha" type="password" />
@@ -79,7 +80,29 @@ export const ProfilePage: React.FC<ProfilePage> = () => {
 
         <InputAtom label="Data" variant="tertiary" placeholder="Data" type="date" min={new Date().toISOString().split('T')[0]}/>
         <InputAtom label="Data" variant="tertiary" placeholder="Data" type="time"/>
+        <InputAtom label="Data" variant="tertiary" placeholder="Data" type="time"/>
+        
+        <CardMolecule title="Configurações" icon="user-config" >
+
+          <Popover>
+            <Popover.Trigger>
+              <ButtonAtom variant="primary">Alterar senha</ButtonAtom>
+            </Popover.Trigger>
+            <Popover.Content>
+              <CardMolecule title="Acesso" icon="shield" >
+                <></>
+                <div className="flex gap-2 w-full flex-wrap sm:flex-nowrap">
+                  <InputAtom label="Senha atual" variant="tertiary" placeholder="Digite sua senha" type="password" />
+                  <InputAtom label="Nova senha" variant="tertiary" placeholder="Nova senha" type="password" />
+                  {/* <InputAtom label="Telefone" variant="tertiary" placeholder="Digite seu telefone"/> */}
+                </div>
+                <ButtonAtom variant="primary" className="w-full">Alterar senha</ButtonAtom>
+              </CardMolecule>
+            </Popover.Content>
+          </Popover>
+        </CardMolecule>
       </div>
+
     </DashTemplate>
   )
 }
