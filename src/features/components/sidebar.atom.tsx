@@ -15,12 +15,14 @@ type SidebarAtom = {
   brandIcon?: {
     collapsed: React.ReactNode,
     expanded: React.ReactNode
-  }
+  },
+  onTabChange?: (tab: string) => void
 }
 
 export const SidebarAtom: React.FC<SidebarAtom> = ({
   tabs,
-  brandIcon
+  brandIcon,
+  onTabChange
 }) => {
   const [activeTab, setActiveTab] = React.useState('home')
   const LogoutIcon = IconConfig.getIconByName('logout');
@@ -32,8 +34,14 @@ export const SidebarAtom: React.FC<SidebarAtom> = ({
     setActiveTab(activeTab);
   }, [])
 
+  useEffect(() => {
+    if (onTabChange) {
+      onTabChange(activeTab);
+    }
+  }, [activeTab]);
+
   return (
-    <aside className="group fixed top-0 left-0 h-full bg-background-secondary border-r-2 border-background-tertiary/15 text-foreground-primary flex flex-col transition-all rounded-r-3xl duration-300 z-20 w-16 hover:w-48 px-1">
+    <aside className="group h-screen bg-background-secondary border-r-2 border-background-tertiary/15 text-foreground-primary flex flex-col transition-all rounded-r-3xl duration-700 z-20 w-16 hover:w-48 px-1">
       <div className="flex flex-col h-full w-full py-4 gap-1 -mr-2 justify-start">
         {brandIcon && (
           <Link
@@ -72,7 +80,7 @@ export const SidebarAtom: React.FC<SidebarAtom> = ({
                 </div>
 
                 <span
-                  className={`hidden group-hover:flex flex-1 text-xs text-left whitespace-nowrap transition-all duration-300 opacity-0 group-hover:opacity-100 ml-[-100%] group-hover:ml-0 overflow-hidden ${isActive ? 'text-brand' : ''}`}
+                  className={`hidden group-hover:flex flex-1 text-xs text-left whitespace-nowrap transition-all duration-700 opacity-0 group-hover:opacity-100 ml-[-100%] group-hover:ml-0 overflow-hidden ${isActive ? 'text-brand' : ''}`}
                 >
                   {item.label}
                 </span>
